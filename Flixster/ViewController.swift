@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  Flixster
+//  Flixster - Assignment 01 & 02 - FINAL
 //
 //  Created by Madison Shimbo on 9/26/21.
 //
@@ -61,11 +61,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         cell.posterView.af_setImage(withURL: posterUrl!)
         
-        
         return cell
     }
     
-
-
 }
 
