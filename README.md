@@ -24,7 +24,7 @@ If gif does not play above, see walkthrough gif here: https://i.imgur.com/E8w6UD
 ### Notes
 Describe any challenges encountered while building the app.
 
-My biggest challenge was figuring out how to adjust the size of the posters in the collection view so it scaled up properly.
+My biggest challenge was figuring out how to adjust the size of the posters in the collection view so that they scaled up properly.
 
 ---
 
