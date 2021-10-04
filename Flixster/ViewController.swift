@@ -17,7 +17,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.dataSource = self
         tableView.delegate = self
         // Do any additional setup after loading the view.
-        print("Hello")
         let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
@@ -31,7 +30,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 self.movies = dataDictionary["results"] as! [[String:Any]]
                 
                 self.tableView.reloadData() // after requesting movie data, it will call the two below functions
-                print(dataDictionary)
+                // print(dataDictionary)
 
 
              }
@@ -63,6 +62,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         return cell
     }
-    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    // (the function is for preparation from leaving from one screen and navigating to (preparing) a new page)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("Loading up the details screen")
+        
+        // Find the selected movie (sender = cell that was tapped on -> cell tapped on is the movie we are targetting)
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPath(for: cell)! // gets index path of given cell
+        let movie = movies[indexPath.row]
+        // Get the new view controller using segue.destination & pass the selected object to the new view controller.
+        let detailsViewController = segue.destination as! MovieDetailsViewController
+        detailsViewController.movie = movie // movie for new page is movie we saved data about
+        // deselect what we clicked on so it doesn't keep getting highlighted
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
 }
 
